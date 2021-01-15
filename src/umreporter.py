@@ -64,7 +64,7 @@ fig4
 
 expander = st.beta_expander("FAQ")
 expander.write(
-    "1.- ¿Donde guardo los archivos? - Los archivos xls que se descargan del ERP deben ser guardados en la carpeta de este programa, y luego debe buscarse con el selector de archivos en esta página")
+    "1.- ¿Donde guardo los archivos? - Los archivos xls que se descargan del ERP deben ser guardados en la carpeta de este programa, y luego debe buscarse con el selector de archivos en esta página.")
 expander.write(
     "2.- ¿Puedo modificar el archivo que guardé? - Aunque no es recomendable puede modificarse el contenido más no debe modificarse el nombre de la pestaña del archivo ni mover los datos de su posición original.")
 expander.write(
