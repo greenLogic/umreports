@@ -6,6 +6,8 @@ import pandas as pd
 import plotly.express as px
 import streamlit as st
 
+st.image('img/logo.png', width=100)
+
 st.title('Reportes Universidad de Mexicali')
 
 """
@@ -15,7 +17,7 @@ Los gráficos son creados a partir de los archivos seleccionados
 
 def file_selector(folder_path='.'):
     filenames = os.listdir(folder_path)
-    selected_filename = st.selectbox('Select a file', filenames)
+    selected_filename = st.selectbox('Selecciona un archivo', filenames)
     return os.path.join(folder_path, selected_filename)
 
 
@@ -45,8 +47,8 @@ expense = pd.read_excel(filename, header=0,
 expense['Cantidad de gasto'] = expense['Cantidad de gasto'].str.replace(
     "$", "")
 
-expense
-
+if st.checkbox('Mostrar datos del archivo'):
+    expense
 
 """
 ## Gastos por categoría
@@ -72,38 +74,11 @@ fig3 = px.pie(expense, values='Cantidad de gasto', names='Fecha', title='Gastos 
               color_discrete_sequence=px.colors.sequential.Rainbow)
 fig3
 
-# fig4 = px.line(expense, x='Cantidad de gasto', y='Fecha', color="Categoría", line_group="Categoria", hover_name="Categoría",
-#         line_shape="spline", render_mode="svg")
-# fig4 = px.line(expense, x='Fecha', y='Cantidad de gasto', color_discrete_sequence=px.colors.sequential.Rainbow)
+
 fig4 = px.line(expense, x='Fecha', y='Cantidad de gasto',
-               color='Título del gasto', line_shape='spline', render_mode='svg')
-
+               color='Título del gasto', line_shape='spline', render_mode='svg', template='plotly_white')
 fig4
-
-fig5 = px.bar(expense, x='Título del gasto', y='Cantidad de gasto')
-
-fig5
-
-
-left_column, right_column = st.beta_columns(2)
-pressed = left_column.button('Press me?')
-if pressed:
-    right_column.write("Woohoo!")
 
 expander = st.beta_expander("FAQ")
 expander.write(
     "Here you could put in some really, really long explanations...")
-
-'Starting a long computation...'
-
-# Add a placeholder
-latest_iteration = st.empty()
-bar = st.progress(0)
-
-for i in range(100):
-    # Update the progress bar with each iteration.
-    latest_iteration.text(f'Iteration {i+1}')
-    bar.progress(i + 1)
-    time.sleep(0.1)
-
-'...and now we\'re done!'
