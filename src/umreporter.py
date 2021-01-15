@@ -24,23 +24,6 @@ def file_selector(folder_path='.'):
 filename = file_selector()
 st.write('Ha seleccionado `%s`' % filename)
 
-
-def check_valid_file(filename):
-    if filename.endswith('.xls'):
-        print("Archivo aceptado")
-    else:
-        print("El archivo no tiene formato Excel")
-
-
-def check_valid_file2(filename):
-    if filename.endswith('.xls'):
-        return "Archivo aceptado"
-    else:
-        return "El archivo no tiene formato Excel"
-
-
-print(check_valid_file2(filename))
-
 expense = pd.read_excel(filename, header=0,
                         sheet_name='Expenses Reports')
 
@@ -81,4 +64,10 @@ fig4
 
 expander = st.beta_expander("FAQ")
 expander.write(
-    "Here you could put in some really, really long explanations...")
+    "1.- ¿Donde guardo los archivos? - Los archivos xls que se descargan del ERP deben ser guardados en la carpeta de este programa, y luego debe buscarse con el selector de archivos en esta página")
+expander.write(
+    "2.- ¿Puedo modificar el archivo que guardé? - Aunque no es recomendable puede modificarse el contenido más no debe modificarse el nombre de la pestaña del archivo ni mover los datos de su posición original.")
+expander.write(
+    "3.- ¿Existe algún problema si renombro el archivo? - No lo hay, solo recuerde elegir el archivo renombrado con el selector de archivos y no modifique su extensión.")
+expander.write(
+    "4.- ¿Que extensiones soporta este sitio? - Este sitio soporta archivos con extensión xls, xlsx y xlsb, sin embargo no debe modificarse la extensión del archivo descargado desde el ERP.")
